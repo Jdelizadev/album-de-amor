@@ -30,7 +30,7 @@ export default function Album() {
     if (fotosMostradas < totalFotos && faseFinal === 0) {
       const timer = setTimeout(() => {
         setFotosMostradas(prev => prev + 1);
-      }, 2500); 
+      }, 3500); 
       return () => clearTimeout(timer);
     } else if (fotosMostradas === totalFotos && faseFinal === 0) {
       const timer = setTimeout(() => setFaseFinal(1), 2000);
@@ -100,7 +100,7 @@ export default function Album() {
 
         <div className={`absolute flex flex-col items-center justify-center transition-opacity duration-1000 ${faseFinal === 2 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <img 
-            src="/fotos/perrito.png" 
+            src="/fotos/perrito.jpg" 
             alt="Perrito enviando corazón" 
             className="w-52 md:w-80 mb-6 drop-shadow-[0_0_20px_rgba(236,72,153,0.6)]" 
           />
