@@ -5,17 +5,14 @@ export default function Album() {
   const [fotosMostradas, setFotosMostradas] = useState(0);
   const [faseFinal, setFaseFinal] = useState(0);
 
-  // Generamos posiciones distribuidas por toda la pantalla
   const posiciones = useMemo(() => {
     return Array.from({ length: totalFotos }).map(() => ({
       topMobile: Math.floor(Math.random() * 65) + 2,
       topDesktop: Math.floor(Math.random() * 20) + 2,
-      
       leftMobile: Math.floor(Math.random() * 40) + 2,
       leftDesktop: Math.floor(Math.random() * 40) + 15,
-
       rotate: `${Math.floor(Math.random() * 40) - 20}deg`,
-      scale: (Math.random() * 0.1 + 1).toFixed(2), // Escala base un poco más robusta
+      scale: (Math.random() * 0.1 + 1).toFixed(2),
     }));
   }, []);
 
@@ -48,7 +45,6 @@ export default function Album() {
   return (
     <div className="h-screen w-full bg-black relative overflow-hidden flex items-center justify-center">
       
-      {/* Botón secreto esquina superior derecha */}
       <button 
         onClick={skipToEnd}
         className="absolute top-0 right-0 w-20 h-20 z-[999] opacity-0 cursor-default"
@@ -59,8 +55,8 @@ export default function Album() {
         return (
           <div
             key={index}
-            // Aumentamos el tamaño base: w-72 para celular y w-[420px] para computadora
-            className="absolute w-72 md:w-[420px] bg-white p-3 md:p-5 shadow-2xl rounded-sm transition-all duration-500 ease-out"
+            // Añadimos will-change-transform para optimizar el rendimiento gráfico en móviles
+            className="absolute w-72 md:w-[420px] bg-white p-3 md:p-5 shadow-2xl rounded-sm transition-all duration-500 ease-out will-change-transform"
             style={{
               top: `${pos.topMobile}%`,
               left: `${pos.leftMobile}%`,
@@ -80,6 +76,7 @@ export default function Album() {
               <img
                 src={`/fotos/foto-${index + 1}.jpeg`}
                 alt={`Memoria ${index + 1}`}
+                loading="lazy" // Optimización nativa del navegador para carga diferida
                 className="w-full h-auto border border-gray-200 pointer-events-none object-cover"
               />
             </div>
