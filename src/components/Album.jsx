@@ -5,19 +5,17 @@ export default function Album() {
   const [fotosMostradas, setFotosMostradas] = useState(0);
   const [faseFinal, setFaseFinal] = useState(0);
 
-  // Generamos posiciones que distribuyen uniformemente las fotos por toda la pantalla en celular
+  // Generamos posiciones distribuidas por toda la pantalla
   const posiciones = useMemo(() => {
     return Array.from({ length: totalFotos }).map(() => ({
-      // En celular abrimos el rango vertical de 2% a 70% para que usen toda la pantalla uniformemente
-      topMobile: Math.floor(Math.random() * 68) + 2,
-      topDesktop: Math.floor(Math.random() * 23) + 2,
+      topMobile: Math.floor(Math.random() * 65) + 2,
+      topDesktop: Math.floor(Math.random() * 20) + 2,
       
-      // Margen horizontal equilibrado en celular (2% a 45%)
-      leftMobile: Math.floor(Math.random() * 43) + 2,
+      leftMobile: Math.floor(Math.random() * 40) + 2,
       leftDesktop: Math.floor(Math.random() * 40) + 15,
 
       rotate: `${Math.floor(Math.random() * 40) - 20}deg`,
-      scale: (Math.random() * 0.15 + 0.9).toFixed(2),
+      scale: (Math.random() * 0.1 + 1).toFixed(2), // Escala base un poco más robusta
     }));
   }, []);
 
@@ -30,7 +28,7 @@ export default function Album() {
     if (fotosMostradas < totalFotos && faseFinal === 0) {
       const timer = setTimeout(() => {
         setFotosMostradas(prev => prev + 1);
-      }, 3500); 
+      }, 4000); 
       return () => clearTimeout(timer);
     } else if (fotosMostradas === totalFotos && faseFinal === 0) {
       const timer = setTimeout(() => setFaseFinal(1), 2000);
@@ -61,7 +59,8 @@ export default function Album() {
         return (
           <div
             key={index}
-            className="absolute w-56 md:w-96 bg-white p-3 md:p-5 shadow-2xl rounded-sm transition-all duration-500 ease-out"
+            // Aumentamos el tamaño base: w-72 para celular y w-[420px] para computadora
+            className="absolute w-72 md:w-[420px] bg-white p-3 md:p-5 shadow-2xl rounded-sm transition-all duration-500 ease-out"
             style={{
               top: `${pos.topMobile}%`,
               left: `${pos.leftMobile}%`,
@@ -81,7 +80,7 @@ export default function Album() {
               <img
                 src={`/fotos/foto-${index + 1}.jpeg`}
                 alt={`Memoria ${index + 1}`}
-                className="w-full h-auto border border-gray-200 pointer-events-none"
+                className="w-full h-auto border border-gray-200 pointer-events-none object-cover"
               />
             </div>
           </div>
@@ -94,7 +93,7 @@ export default function Album() {
         
         <div className={`absolute px-8 max-w-4xl transition-opacity duration-1000 ${faseFinal === 1 ? 'opacity-100' : 'opacity-0'}`}>
           <h1 className="text-xl md:text-4xl font-serif text-center text-white leading-relaxed drop-shadow-lg px-4">
-            Amor, sé que hay dias dificiles, complicados, otros más bellos y llenos de cosas bonitas, pero lo importante es que siempre haya amor , y que sepas que jamás me apartare de tu lado porque quiero estar contigo toda mi vida, felices 9 meses corazón.
+            Amor, sé que hay dias dificiles, complicados, otros más bellos y llenos de cosas bonitas, pero lo importante es que siempre haya amor , y que sepas que jamás me apartare de tu lado porque quiero estar contigo toda mi vida.
           </h1>
         </div>
 
