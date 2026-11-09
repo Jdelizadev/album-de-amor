@@ -8,8 +8,8 @@ function App() {
 
   const iniciarSecuencia = () => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.6; 
-      audioRef.current.currentTime = 12; // Salta los primeros 11 segundos de silencio
+      audioRef.current.volume = 0.5; 
+      audioRef.current.currentTime = 35; // Salta los primeros 11 segundos de silencio
       audioRef.current.play().catch(error => console.log("Audio autoplay bloqueado:", error));
     }
     setDesbloqueado(true);
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans overflow-hidden">
-      <audio ref={audioRef} src="/brillas.mp3" loop />
+      <audio ref={audioRef} src="/audio/brillas.mp3" loop />
       
       {!desbloqueado ? (
         <Terminal onUnlock={iniciarSecuencia} />

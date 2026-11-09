@@ -5,7 +5,7 @@ export default function Terminal({ onUnlock }) {
   const [texto, setTexto] = useState('');
   const [mostrarBoton, setMostrarBoton] = useState(false);
   
-  const mensajeTerminal = "> Iniciando secuencia de amor...\n> Analizando memorias de estos 9 meses...\n> Archivos cifrados encontrados.\n> Presiona ENTER para desencriptar.";
+  const mensajeTerminal = "> Iniciando secuencia de amor...\n> Analizando memorias de estos 9 meses...\n> Archivos cifrados encontrados.\n> Presiona para desencriptar.";
 
   useEffect(() => {
     let index = 0;

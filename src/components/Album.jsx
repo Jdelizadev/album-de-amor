@@ -26,7 +26,7 @@ export default function Album() {
     if (fotosMostradas < totalFotos && faseFinal === 0) {
       const timer = setTimeout(() => {
         setFotosMostradas(prev => prev + 1);
-      }, 2500); 
+      }, 3500); 
       return () => clearTimeout(timer);
     } else if (fotosMostradas === totalFotos && faseFinal === 0) {
       const timer = setTimeout(() => setFaseFinal(1), 2000);
